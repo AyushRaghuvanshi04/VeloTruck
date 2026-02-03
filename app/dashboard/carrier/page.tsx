@@ -33,7 +33,7 @@ export default function CarrierDashboard() {
               </div>
             </CardHeader>
             <CardContent className="relative z-10">
-              <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">{idleTrucks}</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">{idleTrucks}</div>
               <p className="text-xs text-muted-foreground mt-2 font-medium">
                 Available for booking
               </p>
@@ -48,7 +48,7 @@ export default function CarrierDashboard() {
               </div>
             </CardHeader>
             <CardContent className="relative z-10">
-              <div className="text-4xl font-bold bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">{onTripTrucks}</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">{onTripTrucks}</div>
               <p className="text-xs text-muted-foreground mt-2 font-medium">
                 Currently delivering
               </p>
@@ -63,7 +63,7 @@ export default function CarrierDashboard() {
               </div>
             </CardHeader>
             <CardContent className="relative z-10">
-              <div className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">₹{totalEarnings.toLocaleString()}</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">₹{totalEarnings.toLocaleString()}</div>
               <p className="text-xs text-muted-foreground mt-2 font-medium">
                 Last 7 days
               </p>

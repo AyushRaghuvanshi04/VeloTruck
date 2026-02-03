@@ -58,7 +58,7 @@ export default function PostLoadPage() {
     <DashboardLayout userRole="shipper">
       <div className="max-w-4xl mx-auto space-y-6">
         <div className="text-center sm:text-left">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">Post a New Load</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">Post a New Load</h1>
           <p className="text-gray-600 mt-2 text-lg">Fill in the details to find the perfect carrier</p>
         </div>
 

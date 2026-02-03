@@ -16,7 +16,7 @@ export default function AdminControlTower() {
     <DashboardLayout userRole="admin">
       <div className="space-y-6">
         <div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">Control Tower</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">Control Tower</h1>
           <p className="text-gray-600 mt-2 text-lg">Monitor platform activity and manage operations</p>
         </div>
 

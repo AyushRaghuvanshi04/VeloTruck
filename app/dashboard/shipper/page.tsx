@@ -68,7 +68,7 @@ export default function ShipperDashboard() {
               </div>
             </CardHeader>
             <CardContent className="relative z-10">
-              <div className="text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">{activeLoads.length}</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">{activeLoads.length}</div>
               <p className="text-xs text-muted-foreground mt-2 font-medium">
                 {mockLoads.filter(l => l.status === "in_transit").length} in transit
               </p>
@@ -83,7 +83,7 @@ export default function ShipperDashboard() {
               </div>
             </CardHeader>
             <CardContent className="relative z-10">
-              <div className="text-4xl font-bold bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">₹{totalSpent.toLocaleString()}</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-secondary to-secondary/70 bg-clip-text text-transparent">₹{totalSpent.toLocaleString()}</div>
               <p className="text-xs text-muted-foreground mt-2 font-medium">
                 All time deliveries
               </p>
@@ -98,7 +98,7 @@ export default function ShipperDashboard() {
               </div>
             </CardHeader>
             <CardContent className="relative z-10">
-              <div className="text-4xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">{deliveriesThisWeek}</div>
+              <div className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-green-600 to-green-500 bg-clip-text text-transparent">{deliveriesThisWeek}</div>
               <p className="text-xs text-muted-foreground mt-2 font-medium">
                 Completed shipments
               </p>

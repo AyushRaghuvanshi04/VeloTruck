@@ -10,13 +10,16 @@ import {
   Settings, 
   Users,
   FileCheck,
-  TrendingUp
+  TrendingUp,
+  X
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { VeloTruckLogo } from "@/components/VeloTruckLogo";
 
 interface SidebarProps {
   userRole: "shipper" | "carrier" | "admin";
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
 const shipperNav = [
@@ -42,14 +45,26 @@ const adminNav = [
   { name: "Settings", href: "/dashboard/admin/settings", icon: Settings },
 ];
 
-export function Sidebar({ userRole }: SidebarProps) {
+export function Sidebar({ userRole, isOpen = true, onClose }: SidebarProps) {
   const pathname = usePathname();
   const navItems = userRole === "shipper" ? shipperNav : userRole === "carrier" ? carrierNav : adminNav;
 
   return (
-    <div className="flex h-screen w-64 flex-col border-r bg-gradient-to-b from-white via-white to-gray-50 shadow-xl">
-      <div className="flex h-16 items-center border-b bg-gradient-to-r from-primary via-primary to-secondary px-6 shadow-md">
-        <Link href="/" className="flex items-center gap-2 group transition-all duration-300 hover:scale-105">
+    <>
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={onClose}
+        />
+      )}
+      {/* Sidebar */}
+      <div className={cn(
+        "fixed md:static inset-y-0 left-0 z-50 flex h-screen w-64 flex-col border-r bg-gradient-to-b from-white via-white to-gray-50 shadow-xl transition-transform duration-300",
+        isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+      )}>
+      <div className="flex h-16 items-center justify-between border-b bg-gradient-to-r from-primary via-primary to-secondary px-6 shadow-md">
+        <Link href="/" className="flex items-center gap-2 group transition-all duration-300 hover:scale-105" onClick={onClose}>
           <div className="h-10 w-10 rounded-xl bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
             <Truck className="h-5 w-5 text-white relative z-10 transition-transform group-hover:scale-110" />
@@ -58,6 +73,14 @@ export function Sidebar({ userRole }: SidebarProps) {
             VeloTruck
           </span>
         </Link>
+        {/* Mobile close button */}
+        <button
+          onClick={onClose}
+          className="md:hidden p-2 rounded-lg text-white hover:bg-white/20 transition-colors"
+          aria-label="Close menu"
+        >
+          <X className="h-5 w-5" />
+        </button>
       </div>
       <nav className="flex-1 space-y-2 p-4">
         {navItems.map((item) => {
@@ -67,6 +90,7 @@ export function Sidebar({ userRole }: SidebarProps) {
             <Link
               key={item.href}
               href={item.href}
+              onClick={onClose}
               className={cn(
                 "group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 relative overflow-hidden",
                 isActive
@@ -103,5 +127,6 @@ export function Sidebar({ userRole }: SidebarProps) {
         </div>
       </div>
     </div>
+    </>
   );
 }

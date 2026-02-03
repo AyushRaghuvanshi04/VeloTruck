@@ -38,7 +38,7 @@ export default function UsersPage() {
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-primary via-primary to-secondary bg-clip-text text-transparent">
               User Management
             </h1>
             <p className="text-gray-600">
@@ -164,8 +164,8 @@ export default function UsersPage() {
           </CardContent>
         </Card>
 
-        {/* Users Table */}
-        <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm">
+        {/* Users Table - Desktop */}
+        <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm hidden md:block">
           <CardHeader className="bg-gradient-to-r from-gray-50 to-white border-b">
             <CardTitle className="text-xl font-bold">Users ({filteredUsers.length})</CardTitle>
           </CardHeader>
@@ -241,6 +241,66 @@ export default function UsersPage() {
             </Table>
           </CardContent>
         </Card>
+
+        {/* Users Cards - Mobile */}
+        <div className="block md:hidden space-y-4">
+          {filteredUsers.map((user) => (
+            <Card key={user.id} className="border-0 shadow-xl bg-white/80 backdrop-blur-sm hover:shadow-2xl transition-all">
+              <CardContent className="p-6">
+                <div className="flex items-start justify-between mb-4">
+                  <div className="flex-1">
+                    <div className="font-semibold text-lg mb-1">{user.name}</div>
+                    <div className="text-sm text-muted-foreground flex items-center gap-1 mb-2">
+                      <Mail className="h-3 w-3" />
+                      {user.email}
+                    </div>
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <Badge variant={user.type === "shipper" ? "outline" : "secondary"} className="capitalize">
+                        {user.type}
+                      </Badge>
+                      <Badge 
+                        variant={
+                          user.status === "active" ? "success" :
+                          user.status === "pending" ? "warning" : "destructive"
+                        }
+                        className="capitalize"
+                      >
+                        {user.status}
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-4 mb-4 text-sm border-t pt-4">
+                  <div>
+                    <span className="text-muted-foreground">Phone:</span>
+                    <div className="font-semibold flex items-center gap-1">
+                      <Phone className="h-3 w-3" />
+                      {user.phone}
+                    </div>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground">Joined:</span>
+                    <div className="font-semibold">{new Date(user.joined).toLocaleDateString()}</div>
+                  </div>
+                  <div>
+                    <span className="text-muted-foreground">Activity:</span>
+                    <div className="font-semibold">
+                      {user.type === "shipper" ? (
+                        <>{user.loads} loads</>
+                      ) : (
+                        <>{user.trips} trips</>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <Button variant="outline" className="w-full gap-2">
+                  <MoreVertical className="h-4 w-4" />
+                  Manage User
+                </Button>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
 
         {filteredUsers.length === 0 && (
           <Card className="border-0 shadow-xl bg-white/80 backdrop-blur-sm">
